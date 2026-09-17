@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Cydo — Portfolio: projects, about me and contact." />
+  <title>Cydo — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="logo" href="#home">Cydo</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul id="nav-menu" class="nav-menu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <h1>Hi, I'm Cydo</h1>
+      <p class="subtitle">Developer — I build simple, fast web experiences.</p>
+      <div class="actions">
+        <a class="btn primary" href="#projects">View projects</a>
+        <a class="btn" href="#contact">Contact me</a>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <h2>About</h2>
+      <p>Short bio goes here. Who you are, what you do, what you're looking for.</p>
+      <ul class="skills">
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+      </ul>
+    </section>
+
+    <section id="experience" class="section">
+      <h2>Experience</h2>
+      <p class="muted">Work history, rendered from <code>app.js</code>. Edit the <code>EXPERIENCE</code> array.</p>
+      <div id="timeline" class="timeline"></div>
+    </section>
+
+    <section id="projects" class="section">
+      <h2>Projects</h2>
+      <p class="muted">Rendered from <code>app.js</code>. Edit the <code>PROJECTS</code> array to add your own.</p>
+      <div id="projects-grid" class="grid"></div>
+    </section>
+
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <p>Best way to reach me:</p>
+      <ul class="contact-list">
+        <li><a href="mailto:hello@example.com">hello@example.com</a></li>
+        <li><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Cydo. All rights reserved.</p>
+  </footer>
+</body>
+</html>
