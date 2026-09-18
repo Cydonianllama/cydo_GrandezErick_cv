@@ -1,8 +1,9 @@
 const PROJECTS = [
   {
-    title: "Project One",
-    description: "Short description of what it does and what you learned.",
-    url: "#projects",
+    title: "Cydoflow — Automatismos",
+    description:
+      "Plataforma orientada al desarrollo de flujos conversacionales. Próximamente subiré docs para desglosar la plataforma desarrollada.",
+    url: "https://monorepo-cydonianllama-web.vercel.app/",
   },
   {
     title: "Project Two",
@@ -18,25 +19,26 @@ const PROJECTS = [
 
 const EXPERIENCE = [
   {
-    role: "Frontend Developer",
-    company: "Company Name",
-    period: "2024 — Present",
-    description: "What you did, impact and technologies used.",
-    tags: ["JavaScript", "CSS"],
+    role: "Desarrollador",
+    company: "Plazbot",
+    period: "2016 May — 2021 May",
+    description:
+      "Desarrollo de módulos, mantenimiento de producto, comunicación con clientes y soporte de producto.",
+    tags: [
+      "Flujos conversacionales",
+      "Integraciones IA",
+      "NextJS",
+      "Express",
+      "Alta concurrencia",
+      "Legacy",
+    ],
   },
   {
-    role: "Web Developer",
-    company: "Previous Company",
-    period: "2022 — 2024",
-    description: "What you did, impact and technologies used.",
-    tags: ["HTML", "JavaScript"],
-  },
-  {
-    role: "Freelancer",
-    company: "Self-employed",
-    period: "2021 — 2022",
-    description: "What you did, impact and technologies used.",
-    tags: ["HTML", "CSS"],
+    role: "Soporte",
+    company: "Temputronic SAC",
+    period: "2018 Feb — 2018 Jun",
+    description: "Validación de datos para el usuario.",
+    tags: ["Soporte", "Validación de datos"],
   },
 ];
 
