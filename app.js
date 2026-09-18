@@ -5,16 +5,16 @@ const PROJECTS = [
       "Plataforma orientada al desarrollo de flujos conversacionales. Próximamente subiré docs para desglosar la plataforma desarrollada.",
     url: "https://monorepo-cydonianllama-web.vercel.app/",
   },
-  {
-    title: "Project Two",
-    description: "Short description of what it does and what you learned.",
-    url: "#projects",
-  },
-  {
-    title: "Project Three",
-    description: "Short description of what it does and what you learned.",
-    url: "#projects",
-  },
+  // {
+  //   title: "Project Two",
+  //   description: "Short description of what it does and what you learned.",
+  //   url: "#projects",
+  // },
+  // {
+  //   title: "Project Three",
+  //   description: "Short description of what it does and what you learned.",
+  //   url: "#projects",
+  // },
 ];
 
 const EXPERIENCE = [
