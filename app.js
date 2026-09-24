@@ -5,11 +5,11 @@ const PROJECTS = [
       "Plataforma orientada al desarrollo de flujos conversacionales. Próximamente subiré docs para desglosar la plataforma desarrollada.",
     url: "https://monorepo-cydonianllama-web.vercel.app/",
   },
-  // {
-  //   title: "Project Two",
-  //   description: "Short description of what it does and what you learned.",
-  //   url: "#projects",
-  // },
+  {
+    title: "Cydoworkflows (en desarrollo)",
+    description: "Sistema interno para realizar configurar procesos automatizados, basandome en N8N y Make.",
+    url: "https://github.com/Cydonianllama/cydoworkflows",
+  },
   // {
   //   title: "Project Three",
   //   description: "Short description of what it does and what you learned.",
