@@ -1,4 +1,4 @@
-const PROJECTS = [
+const PRODUCTS = [
   {
     id: "cydoflow",
     title: "Cydoflow — Automatismos",
@@ -40,6 +40,40 @@ const PROJECTS = [
   },
 ];
 
+// Grid de Mis Proyectos: imagen/video, descripción, etiquetas y links.
+const PROJECTS = [
+  {
+    id: "twitch-layout",
+    title: "Práctica de layout de Twitch",
+    description: "Clon de layout de Twitch con HTML, CSS y JS vanilla.",
+    image: "./assets/twitch-preview.jpg",
+    video: "",
+    repo: "https://github.com/Cydonianllama/cydo-ui-front-modules/tree/main/twitch",
+    demo: "https://cydonianllama.github.io/cydo-ui-front-modules/twitch/index.html",
+    tags: ["HTML", "CSS", "JavaScript", "No IA"],
+  },
+  {
+    id: "twitter-layout",
+    title: "Práctica de layout de Twitter responsive",
+    description: "Clon responsive de perfil de Twitter con HTML, JS y CSS vanilla.",
+    image: "",
+    video: "./assets/twitter-preview.mp4",
+    repo: "https://github.com/Cydonianllama/cydo-ui-front-modules/tree/main/twitter-profile",
+    demo: "https://cydonianllama.github.io/cydo-ui-front-modules/twitter-profile/index.html",
+    tags: ["HTML", "CSS", "JavaScript", "No IA"],
+  },
+  {
+    id: "cydo-agent-builder-v1",
+    title: "Cydo agent builder v1",
+    description: "Agente de propósito general realizado para iterar ideas de agentes para mis productos.",
+    image: "./assets/agentbuilderv1.png",
+    video: "",
+    repo: "https://github.com/Cydonianllama/cydo_agentbuilder_v1",
+    demo: "",
+    tags: ["Python", "FastAPI", "Agentes", "Desarrollo con IA"],
+  },
+];
+
 const EXPERIENCE = [
   {
     role: "Desarrollador",
@@ -65,13 +99,13 @@ const EXPERIENCE = [
   },
 ];
 
-function renderProjects() {
-  const grid = document.getElementById("projects-grid");
+function renderProducts() {
+  const grid = document.getElementById("products-grid");
   if (!grid) return;
 
-  grid.innerHTML = PROJECTS.map((p) => {
+  grid.innerHTML = PRODUCTS.map((p) => {
     const links = [
-      `<a href="#proyecto-${p.id}">Ver detalle →</a>`,
+      `<a href="#producto-${p.id}">Ver detalle →</a>`,
       p.landing
         ? `<a href="${p.landing}" target="_blank" rel="noopener">Landing →</a>`
         : "",
@@ -92,11 +126,55 @@ function renderProjects() {
   }).join("");
 }
 
-function renderProjectSpotlights() {
-  const mount = document.getElementById("project-spotlights");
+function renderProjectsGrid() {
+  const grid = document.getElementById("projects-grid");
+  if (!grid) return;
+  if (!PROJECTS || !PROJECTS.length) {
+    grid.innerHTML = `<p class="muted">Aún no hay proyectos publicados.</p>`;
+    return;
+  }
+
+  grid.innerHTML = PROJECTS.map((p) => {
+    const tags =
+      p.tags && p.tags.length
+        ? `<ul class="project-tags">${p.tags.map((t) => `<li>${t}</li>`).join("")}</ul>`
+        : "";
+    const links = [
+      p.repo
+        ? `<a class="project-link" href="${p.repo}" target="_blank" rel="noopener">Repositorio →</a>`
+        : "",
+      p.demo
+        ? `<a class="project-link" href="${p.demo}" target="_blank" rel="noopener">Demo →</a>`
+        : "",
+    ]
+      .filter(Boolean)
+      .join("");
+
+    return `
+      <article class="project-card">
+        ${
+          p.video
+            ? `<div class="project-media"><video src="${p.video}" muted loop playsinline autoplay preload="metadata" aria-label="${p.title}"></video></div>`
+            : p.image
+              ? `<div class="project-media"><img src="${p.image}" alt="${p.title}" loading="lazy" /></div>`
+              : ""
+        }
+        <div class="project-body">
+          <h3>${p.title}</h3>
+          <p>${p.description || ""}</p>
+          ${tags}
+          ${links ? `<div class="project-links">${links}</div>` : ""}
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
+function renderProductSpotlights() {
+  const mount = document.getElementById("product-spotlights");
   if (!mount) return;
 
-  mount.innerHTML = PROJECTS.map((p, index) => {
+  mount.innerHTML = PRODUCTS.map((p, index) => {
     const exterior = [
       p.landing
         ? `<a class="btn primary" href="${p.landing}" target="_blank" rel="noopener">Landing →</a>`
@@ -124,9 +202,9 @@ function renderProjectSpotlights() {
         : "";
 
     return `
-      <article id="proyecto-${p.id}" class="project-spotlight${index % 2 ? " reverse" : ""}">
+      <article id="producto-${p.id}" class="project-spotlight${index % 2 ? " reverse" : ""}">
         <div class="spotlight-text">
-          <p class="spotlight-kicker">${p.tagline || "Proyecto"}</p>
+          <p class="spotlight-kicker">${p.tagline || "Producto"}</p>
           <h3>${p.title}</h3>
           <p class="muted">${p.description}</p>
           ${
@@ -160,7 +238,7 @@ function renderProjectSpotlights() {
   mount.querySelectorAll(".thumb").forEach((btn) => {
     btn.addEventListener("click", () => {
       const card = btn.closest(".project-spotlight");
-      const project = PROJECTS.find((p) => p.id === btn.dataset.project);
+      const project = PRODUCTS.find((p) => p.id === btn.dataset.project);
       const img = project && project.images[Number(btn.dataset.index)];
       if (!card || !img) return;
       const coverBtn = card.querySelector(".gallery-cover");
@@ -186,7 +264,7 @@ function renderProjectSpotlights() {
 let lightboxState = { projectId: null, index: 0 };
 
 function openLightbox(projectId, index) {
-  const project = PROJECTS.find((p) => p.id === projectId);
+  const project = PRODUCTS.find((p) => p.id === projectId);
   if (!project || !project.images || !project.images.length) return;
   lightboxState = { projectId, index: Math.min(index, project.images.length - 1) };
   paintLightbox();
@@ -211,7 +289,7 @@ function closeLightbox() {
 }
 
 function stepLightbox(dir) {
-  const project = PROJECTS.find((p) => p.id === lightboxState.projectId);
+  const project = PRODUCTS.find((p) => p.id === lightboxState.projectId);
   if (!project || project.images.length < 2) return;
   const n = project.images.length;
   lightboxState.index = (lightboxState.index + dir + n) % n;
@@ -219,7 +297,7 @@ function stepLightbox(dir) {
 }
 
 function paintLightbox() {
-  const project = PROJECTS.find((p) => p.id === lightboxState.projectId);
+  const project = PRODUCTS.find((p) => p.id === lightboxState.projectId);
   const lb = document.getElementById("lightbox");
   if (!project || !lb) return;
   const img = project.images[lightboxState.index];
@@ -419,13 +497,25 @@ function initYear() {
   if (year) year.textContent = new Date().getFullYear();
 }
 
+function initHeaderScroll() {
+  const header = document.querySelector(".site-header");
+  if (!header) return;
+  const onScroll = () => {
+    header.classList.toggle("scrolled", window.scrollY > 10);
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-  renderProjects();
-  renderProjectSpotlights();
+  renderProducts();
+  renderProductSpotlights();
+  renderProjectsGrid();
   renderExperience();
   initTheme();
   initNav();
   initSectionIndex();
   initLightbox();
   initYear();
+  initHeaderScroll();
 });

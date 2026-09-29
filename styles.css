@@ -1,15 +1,15 @@
 :root,
 :root[data-theme="dark"] {
-  --bg: #0a0a0f;
-  --surface: #13131a;
+  --bg: #0f0f0f;
+  --surface: #171717;
   --text: #e8e8ec;
   --muted: #9a9aa3;
   --accent: #5b8cff;
-  --border: #26262f;
-  --grid-line: rgba(255, 255, 255, 0.13);
-  --header-bg: rgba(10, 10, 15, 0.85);
+  --border: #2a2a2a;
+  --grid-line: rgba(255, 255, 255, 0.1);
+  --header-bg: #0f0f0f;
   --shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
-  --on-accent: #0a0a0f;
+  --on-accent: #0f0f0f;
   --radius: 8px;
   --max-width: 960px;
   color-scheme: dark;
@@ -53,19 +53,26 @@ body {
   margin: 0;
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   background-color: var(--bg);
-  background-image: radial-gradient(var(--grid-line) 1.2px, transparent 1.3px);
-  background-size: 28px 28px;
   color: var(--text);
   line-height: 1.6;
+}
+
+#projects {
+  background-image: radial-gradient(var(--grid-line) 1.2px, transparent 1.3px);
+  background-size: 48px 48px;
 }
 
 .site-header {
   position: sticky;
   top: 0;
   background: var(--header-bg);
-  backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border);
   z-index: 10;
+  transition: box-shadow 0.3s ease;
+}
+
+.site-header.scrolled {
+  box-shadow: var(--shadow);
 }
 
 .nav {
@@ -75,6 +82,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition: padding 0.3s ease, transform 0.3s ease;
+}
+
+.site-header.scrolled .nav {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  transform: scale(1.015);
 }
 
 .logo {
@@ -95,15 +109,19 @@ h3 {
 
 .nav-menu {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   list-style: none;
   margin: 0;
   padding: 0;
+  align-items: center;
 }
 
 .nav-menu a {
   text-decoration: none;
   color: var(--text);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  padding: 0.25rem 0;
 }
 
 .nav-menu a:hover {
@@ -276,6 +294,109 @@ main {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+}
+
+/* Grid de Mis Proyectos — junto con borde delimitador */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1px;
+  margin-top: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--border);
+}
+
+.project-card {
+  position: relative;
+  border: 0;
+  border-radius: 0;
+  background: var(--surface);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.25s ease;
+  margin: 0;
+  isolation: isolate;
+}
+
+.project-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid transparent;
+  pointer-events: none;
+  transition: border-color 0.25s ease;
+  z-index: 2;
+}
+
+.project-card:hover::after {
+  border-color: rgba(91, 140, 255, 0.7);
+}
+
+.project-media img,
+.project-media video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: top;
+  border-bottom: 1px solid var(--border);
+  background: #000;
+}
+
+.project-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1rem;
+  flex: 1;
+}
+
+.project-body h3 {
+  margin: 0;
+}
+
+.project-body p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  flex: 1;
+}
+
+.project-tags {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.project-tags li {
+  font-size: 0.76rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  background: var(--bg);
+}
+
+.project-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+
+.project-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.project-link:hover {
+  text-decoration: underline;
 }
 
 .skills,
